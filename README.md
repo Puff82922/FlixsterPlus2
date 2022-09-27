@@ -28,7 +28,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of Flixster:
 
 <img src='https://github.com/Puff82922/Flixster/blob/main/FlixsterWalkThrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
