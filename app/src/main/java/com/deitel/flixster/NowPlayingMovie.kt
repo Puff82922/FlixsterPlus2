@@ -10,14 +10,14 @@ import com.google.gson.annotations.SerializedName
  */
 class NowPlayingMovie {
     @JvmField
-    @SerializedName("title")
-    var title: String? = null
+    @SerializedName("results")
+    var tvShows: String? = null
 
     @JvmField
-    @SerializedName("overview")
-    var description: String? = null
+    @SerializedName("name")
+    var name: String? = null
 
     @JvmField
     @SerializedName("poster_path")
-    var movieImageUrl: String = null.toString()
+    var tvImageUrl: String = null.toString()
 }

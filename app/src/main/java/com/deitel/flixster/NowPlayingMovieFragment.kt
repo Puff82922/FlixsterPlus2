@@ -25,11 +25,6 @@ import org.json.JSONObject
 // --------------------------------//
 private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 
-@SerializedName("movie_image")
-var movieImageUrl : String? = null
-@SerializedName("description")
-var description: String? = null
-
 
 /*
  * The class for the only fragment in the app, which contains the progress bar,
@@ -48,7 +43,7 @@ class NowPlayingMovieFragment : Fragment(), OnListFragmentInteractionListener {
         val progressBar = view.findViewById<View>(R.id.progress) as ContentLoadingProgressBar
         val recyclerView = view.findViewById<View>(R.id.list) as RecyclerView
         val context = view.context
-        recyclerView.layoutManager = GridLayoutManager(context, 1)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         updateAdapter(progressBar, recyclerView)
         return view
     }
@@ -67,7 +62,7 @@ class NowPlayingMovieFragment : Fragment(), OnListFragmentInteractionListener {
 
         // Using the client, perform the HTTP request
         client[
-                "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed",
+                "https://api.themoviedb.org/3/tv/popular?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed",
                 params,
                 object : JsonHttpResponseHandler()
         {
@@ -122,7 +117,7 @@ class NowPlayingMovieFragment : Fragment(), OnListFragmentInteractionListener {
      * What happens when a particular book is clicked.
      */
     override fun onItemClick(item: NowPlayingMovie) {
-        Toast.makeText(context, "test: " + item.title, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "test: " + item.tvShows, Toast.LENGTH_LONG).show()
     }
 
 }

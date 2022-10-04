@@ -3,18 +3,16 @@ package com.deitel.flixster
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.deitel.flixster.R.id
 
-/**
- * [RecyclerView.Adapter] that can display a [BestSellerBook] and makes a call to the
- * specified [OnListFragmentInteractionListener].
- */
+
 class BestSellerBooksRecyclerViewAdapter(
-    private val movies: List<NowPlayingMovie>,
+    private val shows: List<NowPlayingMovie>,
     private val mListener: OnListFragmentInteractionListener?
 )
     : RecyclerView.Adapter<BestSellerBooksRecyclerViewAdapter.MovieViewHolder>()
@@ -31,12 +29,12 @@ class BestSellerBooksRecyclerViewAdapter(
      */
     inner class MovieViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         var mItem: NowPlayingMovie? = null
-        val mMovieTitle: TextView = mView.findViewById<View>(id.movie_title) as TextView
-        val mMovieDescription: TextView = mView.findViewById<View>(id.movie_description) as TextView
-        val mMovieImage: ImageView = mView.findViewById<View>(id.movie_image) as ImageView
+        val mTvShow: TextView = mView.findViewById<View>(id.tv_title) as TextView
+        val mTvName: TextView = mView.findViewById<Button>(id.button) as Button
+        val mTvImage: ImageView = mView.findViewById<View>(id.tv_image) as ImageView
 
         override fun toString(): String {
-            return mMovieTitle.toString() + " '" + mMovieDescription.text + "'"
+            return mTvShow.toString() + " '" + mTvName.text + "'"
         }
     }
 
@@ -44,20 +42,20 @@ class BestSellerBooksRecyclerViewAdapter(
      * This lets us "bind" each Views in the ViewHolder to its' actual data!
      */
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = movies[position]
+        val show = shows[position]
 
-        holder.mItem = movie
-        holder.mMovieTitle.text = movie.title
-        holder.mMovieDescription.text = movie.description
+        holder.mItem = show
+        holder.mTvShow.text = show.tvShows
+        holder.mTvName.text = show.name
 
         Glide.with(holder.mView)
-            .load("https://image.tmdb.org/t/p/w500/" + movie.movieImageUrl)
+            .load("https://image.tmdb.org/t/p/w500/" + show.tvImageUrl)
             .centerInside()
-            .into(holder.mMovieImage)
+            .into(holder.mTvImage)
 
         holder.mView.setOnClickListener {
-            holder.mItem?.let { movie ->
-                mListener?.onItemClick(movie)
+            holder.mItem?.let { show ->
+                mListener?.onItemClick(show)
             }
         }
     }
@@ -66,6 +64,6 @@ class BestSellerBooksRecyclerViewAdapter(
      * Remember: RecyclerView adapters require a getItemCount() method.
      */
     override fun getItemCount(): Int {
-        return movies.size
+        return shows.size
     }
 }
